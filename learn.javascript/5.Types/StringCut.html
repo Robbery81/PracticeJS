@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function truncate(str, maxlength) {
+            console.log(str.length);
+            if (str.length > maxlength - 1) {
+                let i = maxlength - 1;
+                let l = str.slice(0, i) + "…";
+                console.log(l.length);
+                return str.slice(0, i) + "…";
+            }
+            return str;
+        }
+
+        console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+    </script>
+</body>
+
+</html>

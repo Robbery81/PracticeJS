@@ -9,16 +9,22 @@
 
 <body>
     <script>
-        let customNumber = +prompt("Enter num", "1");
+        function readNumber() {
+            next: while (1) {
+                let customNumber = prompt("Enter num", "1");
+                if (Boolean(customNumber)) {
 
-        function readNumber(customNumber) {
-            while (isNaN(customNumber)) {
-                customNumber = +prompt("Enter num", "1");
+                    if (isNaN(+customNumber)) {
+                        continue next;
+                    }
+
+                    return +customNumber;
+                }
+                return null;
             }
-            return customNumber;
         }
 
-        console.log(readNumber(customNumber));
+        console.log(readNumber());
     </script>
 </body>
 

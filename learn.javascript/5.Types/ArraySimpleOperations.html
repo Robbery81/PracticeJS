@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let styles = ["Jazz", "Blues"];
+        styles.push("Rock", "Pop", "Dance");
+
+        function addElemtInCenterArray(arr, add) {
+
+            if (arr.length % 2) {
+                let indexAddElement = (arr.length / 2) - 0.5;
+                return arr[indexAddElement] = add;
+            }
+
+            let indexAddElement = (arr.length / 2);
+            return arr[indexAddElement] = add;
+        }
+
+        addElemtInCenterArray(styles, "Classic");
+        //styles[Math.floor((styles.length - 1) / 2)] = "Классика";
+        styles.shift();
+        styles.unshift("Rap", "Reggy");
+
+        console.log(styles);
+    </script>
+</body>
+
+</html>

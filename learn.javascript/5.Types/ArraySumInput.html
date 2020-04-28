@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sumInput() {
+            let userEnterArr = [];
+            let summArr = 0;
+            while (true) {
+                let userEnterNumber = prompt("Enter num", "");
+
+                if (userEnterNumber === null ||
+                    userEnterNumber == "" ||
+                    isNaN(+userEnterNumber)) {
+
+                    for (let item of userEnterArr) {
+                        summArr += item;
+                    }
+
+                    return summArr;
+                }
+
+                userEnterNumber = +userEnterNumber;
+                userEnterArr.push(userEnterNumber);
+            }
+        }
+        console.log(sumInput());
+    </script>
+</body>
+
+</html>

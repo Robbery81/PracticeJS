@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function camelize(str) {
+            let strq = str.toLowerCase().split("-");
+            strq.forEach(function (item, i) {
+
+                if (i != 0) {
+                    strq[i] = item[0].toUpperCase() + strq[i].slice(1);
+                }
+            });
+            return strq.join("");
+        }
+        console.log(camelize("bOrder-radius-item"));
+    </script>
+</body>
+
+</html>

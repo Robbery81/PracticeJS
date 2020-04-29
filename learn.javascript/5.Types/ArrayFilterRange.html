@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function filterRange(arr, a, b) {
+            let max, min;
+            let filtredArr = [];
+            (a - b) >= 0 ? ((max = a), (min = b)) : ((max = b), (min = a));
+            arr.map((item, index) => ((item < min) || (item > max)) ? false : filtredArr.push(item));
+            return filtredArr;
+        }
+
+        let arr = [5, 3, 8, 1, 4, 7, 10, 2];
+        console.log(filterRange(arr, 1, 10));
+    </script>
+</body>
+
+</html>

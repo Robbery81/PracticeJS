@@ -9,14 +9,18 @@
 
 <body>
     <script>
-        function filterRange(arr, a, b) {
+        /*function filterRange(arr, a, b) {
             let max, min;
             let filtredArr = [];
             (a - b) >= 0 ? ((max = a), (min = b)) : ((max = b), (min = a));
             arr.map((item, index) => ((item < min) || (item > max)) ? false : filtredArr.push(item));
             return filtredArr;
+        }*/
+        function filterRange(arr, a, b) {
+            let max, min;
+            (a - b) >= 0 ? ((max = a), (min = b)) : ((max = b), (min = a));
+            return arr.filter(item => ((item < min) || (item > max)) ? false : true);
         }
-
         let arr = [5, 3, 8, 1, 4, 7, 10, 2];
         console.log(filterRange(arr, 1, 10));
     </script>

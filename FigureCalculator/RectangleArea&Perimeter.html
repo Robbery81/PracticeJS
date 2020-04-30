@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Rectangle = {
+            lengthOneSideRectangle: 0,
+            lengthSecondSideRectangle: 0,
+            RectangleArea: function () {
+                return this.RectangleArea = this.lengthOneSideRectangle * this.lengthSecondSideRectangle;
+            },
+            RectanglePerimeter: function () {
+                return this.SquarePerimeter = this.lengthOneSideRectangle * 2 + this.lengthSecondSideRectangle *
+                    2;
+            },
+        };
+
+        function readNumber() {
+            let i = 2;
+            next: while (i) {
+                let customNumber = prompt("Input length of the side of the rectangle", "1");
+                if (Boolean(customNumber)) {
+
+                    if (isNaN(+customNumber)) {
+                        continue next;
+                    }
+                    i--;
+                    return +customNumber;
+                }
+                return null;
+            }
+        }
+
+        Rectangle.lengthOneSideRectangle = readNumber();
+        Rectangle.lengthSecondSideRectangle = readNumber();
+        Rectangle.RectangleArea();
+        Rectangle.RectanglePerimeter();
+
+        console.log(Rectangle);
+    </script>
+</body>
+
+</html>

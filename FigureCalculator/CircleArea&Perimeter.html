@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let Circle = {
+            radiusCircle: 0,
+            CircleArea: function () {
+                return this.CircleArea = this.radiusCircle ** 2 * Math.PI;
+            },
+            CirclePerimeter: function () {
+                return this.CirclePerimeter = this.radiusCircle * 2 * Math.PI;
+            },
+        };
+
+        function readNumber() {
+            let i = 1;
+            next: while (i) {
+                let customNumber = prompt("Radius", "1");
+                if (Boolean(customNumber)) {
+
+                    if (isNaN(+customNumber)) {
+                        continue next;
+                    }
+                    i--;
+                    return +customNumber;
+                }
+                return null;
+            }
+        }
+
+        Circle.radiusCircle = readNumber();
+        Circle.CircleArea();
+        Circle.CirclePerimeter();
+
+        console.log(Circle);
+    </script>
+</body>
+
+</html>

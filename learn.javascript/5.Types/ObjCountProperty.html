@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let salaries = {
+            "John": 100,
+            "Pete": 300,
+            "Mary": 250,
+            [Symbol("foo")]: true,
+        };
+
+        function count(obj) {
+            return Object.values(obj).length;
+        }
+        console.log(count(salaries));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let triangle = {
+            triangleArea: function () {
+                let p = this.trianglePerimeter / 2;
+                return this.triangleArea = (p * (p - this.sideOne) * (p - this.sideTwo) * (p - this
+                    .sideThree)) ** (1 / 2);
+            },
+            trianglePerimeter: function () {
+                return this.trianglePerimeter = this.sideOne + this.sideTwo + this.sideThree;
+            },
+        };
+
+        function readNumber() {
+            let i = 1;
+            next: while (i) {
+                let customNumber = prompt("Side", "1");
+                if (Boolean(customNumber)) {
+
+                    if (isNaN(+customNumber)) {
+                        continue next;
+                    }
+                    i--;
+                    return +customNumber;
+                }
+                return null;
+            }
+        }
+
+        triangle.sideOne = readNumber();
+        triangle.sideTwo = readNumber();
+        triangle.sideThree = readNumber();
+        triangle.trianglePerimeter();
+        triangle.triangleArea();
+
+        console.log(triangle);
+    </script>
+</body>
+
+</html>

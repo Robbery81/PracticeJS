@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let date = new Date(Date.parse("2012-02-20T03:12")); //20 февраля 2012 года, 3 часа 12 минут
+        let d = new Date(2020, 4, 4, 3, 12);
+
+        function getDateAgo(date, days) {
+            return new Date(date.getTime() - days * 24 * 60 * 60 * 1000).getDate();
+        }
+
+        /*function getDateAgo(date, days) {
+            let dateCopy = new Date(date);
+
+            dateCopy.setDate(date.getDate() - days);
+            return dateCopy.getDate();
+        }*/
+
+        function getWeekDay(date) {
+            arr = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", ];
+            return arr[date.getDay()];
+        }
+
+        function getLocalDay(date) {
+            arr = [7, 1, 2, 3, 4, 5, 6];
+            return arr[date.getDay()];
+            /*let day = date.getDay();
+             if (day == 0) {
+                day = 7;
+            }
+            return day;*/
+        }
+
+        function getLastDayOfMonth(year, month, date = 27) {
+            let day = new Date(year, month, date);
+            let dayCopy = new Date(day);
+            let maxDay = 27;
+            for (let i = 1; i < 7; i++) {
+                dayCopy = new Date(dayCopy.setDate(day.getDate() + i));
+                if (dayCopy.getMonth() > month) {
+                    return maxDay;
+                } else maxDay = dayCopy.getDate();
+            }
+        }
+
+        /*function getLastDayOfMonth(year, month, date = 0) {
+            let day = new Date(year, month + 1, date);
+            return day.getDate();
+        }*/
+        function getSecondsToday() {
+            let day = new Date();
+            return ((day.getHours() * 60 * 60) + (day.getMinutes() * 60) + day.getSeconds());
+        }
+
+        function getSecondsToTomorrow() {
+            let day = new Date(2020, 4, 5, 23, 30);
+            let hours = (23 - day.getHours()) * 60 * 60;
+            let min = (59 - day.getMinutes()) * 60;
+            let sec = 60 - day.getSeconds();
+            return (hours + min + sec);
+        }
+        /*
+                function getSecondsToTomorrow() {
+                    let now = new Date();
+                    let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+                    let diff = tomorrow - now; // разница в миллисекундах
+                    return Math.round(diff / 1000); // преобразуем в секунды
+                }*/
+
+        function formatDate(date) {
+            let now = new Date();
+            console.log(now);
+            console.log(date);
+            let delta = Math.floor((now - date) / 1e3);
+            console.log(delta);
+
+            if (delta < 1) {
+                return "Now"
+            }
+            if (delta < 60) {
+                return `${delta} sec ago`;
+            }
+            if (delta < 60 * 60) {
+                return `${delta/60} min ago`;
+            }
+
+            function returnZeroBeforeNumber(a) {
+                if ((a / 10) < 1) {
+                    a = "0" + a;
+                }
+                return a;
+            }
+
+            function abs(year) {
+                arr = (year.toString()).split("");
+                let str = arr[2].toString() + arr[3].toString();
+                return str
+            }
+
+            let DD = returnZeroBeforeNumber(date.getDate());
+            let MM = returnZeroBeforeNumber(date.getMonth() + 1);
+            let YY = abs(date.getFullYear());
+            let HH = date.getHours();
+            let mm = date.getMinutes();
+            return `${DD}.${MM}.${YY} ${HH}:${mm}`;
+
+
+        }
+
+        console.log(formatDate(new Date(new Date - 60 * 1e3 * 60)));
+    </script>
+
+</body>
+
+</html>

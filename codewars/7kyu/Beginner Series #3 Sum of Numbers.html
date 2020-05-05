@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getSum(a, b) {
+            let max, min;
+            (a >= b) ? (max = a, min = b) : (max = b, min = a);
+            let summ = 0;
+            for (let i = min; i <= max; i++) {
+                summ += i;
+            }
+            return summ;
+        }
+        console.log(getSum(1, 1));
+    </script>
+</body>
+
+</html>

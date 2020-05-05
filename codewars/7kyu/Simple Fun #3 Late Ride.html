@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function lateRide(n) {
+            let HH = 0,
+                summ = 0,
+                MM;
+            for (;;) {
+
+                if (n < 60) {
+                    (n / 10 > 1) ? MM = (`${n}`): MM = `0${n}`;
+                    (n == 0) ? MM = `0${n}`: false;
+
+                    break;
+
+                } else {
+                    let time = Math.trunc(n / 60);
+                    (time / 10 > 1) ? HH = `${time}`: HH = `0${time}`;
+                    (time == 0) ? HH = `0${time}`: false;
+                    n = n % 60;
+                }
+            }
+            let result = (HH + MM).split("");
+            for (let k of result) {
+                summ += +k;
+            }
+            return summ;
+        }
+        console.log(lateRide(808));
+    </script>
+</body>
+
+</html>

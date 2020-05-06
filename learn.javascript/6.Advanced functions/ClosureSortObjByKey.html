@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let users = [{
+                name: "John",
+                age: 3,
+                surname: "Johnson"
+            },
+            {
+                name: "Pete",
+                age: 18,
+                surname: "Peterson"
+            },
+            {
+                name: "Ann",
+                age: 9,
+                surname: "Hathaway"
+            },
+            {
+                name: "Znn",
+                age: 10,
+                surname: "Hathaway"
+            }
+        ];
+
+        function byField(fieldName) {
+            return ((a, b) => a[fieldName] > b[fieldName] ? 1 : -1);
+        }
+        console.log(users.sort(byField('name')));
+    </script>
+
+</body>
+
+</html>

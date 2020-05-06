@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function makeArmy() {
+            let shooters = [];
+
+            let i = 0;
+            while (i < 10) {
+                function a(i) {
+                    return function () { // функция shooter
+                        alert(i); // должна выводить порядковый номер
+                    };
+
+                }
+                shooters.push(a(i));
+                i++;
+            }
+
+            return shooters;
+        }
+
+        let army = makeArmy();
+
+        army[0](); // у 0-го стрелка будет номер 10
+        army[5](); // и у 5-го стрелка тоже будет номер 10
+        // ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
+    </script>
+
+</body>
+
+</html>

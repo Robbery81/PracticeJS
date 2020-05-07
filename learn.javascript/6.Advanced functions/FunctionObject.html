@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function makeCounter() {
+
+            function test() {
+                return (test.count++);
+            }
+            test.count = 0;
+            test.set = function (a) {
+                return test.count = a;
+            };
+            test.decrease = function () {
+                return test.count--;
+            };
+            return test;
+        }
+
+        /*
+                function makeCounter() {
+                    let count = 0;
+
+                    function counter() {
+                        return count++;
+                    }
+
+                    counter.set = value => count = value;
+
+                    counter.decrease = () => count--;
+
+                    return counter;
+                }
+        */
+        let counter = makeCounter();
+
+        console.log(counter()); // 0
+        console.log(counter()); // 1
+
+        counter.set(10); // установить новое значение счётчика
+
+        console.log(counter()); // 10
+
+        counter.decrease(); // уменьшить значение счётчика на 1
+
+        console.log(counter()); // 10 (вместо 11)
+    </script>
+
+</body>
+
+</html>

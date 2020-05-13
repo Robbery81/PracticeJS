@@ -10,7 +10,6 @@ function start() {
     }
 }
 
-
 let personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -30,8 +29,6 @@ function detectPersonalLvl() {
         console.log("Произошла ошибка");
     }
 }
-
-
 
 function enterCheck(a) {
     if ((a == "") || (a == null) || (a.length > 50)) {

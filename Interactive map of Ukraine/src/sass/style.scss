@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+$bg_gray: #222222;
+$bg_gray_border: #363636;
+$white: #BDBDBD;
+$red: #E60000;
+
+$blue: #2493F2;
+$green: #70A800;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    background-color: black;
+}
+
+.header {
+    padding: 3px;
+    background-color: $bg_gray;
+    border: 1px solid $bg_gray_border;
+    text-align: center;
+    margin: 5px;
+
+    &_h1 {
+        color: $white;
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+.statistics {
+    margin-right: 5px;
+    background-color: $bg_gray;
+    border: 1px solid $bg_gray_border;
+
+    &_total {
+        padding: 5px;
+        color: $white;
+        text-align: center;
+        margin-bottom: 5px;
+
+        &_main {
+            font-size: 12px;
+        }
+
+        &_number {
+            color: $red;
+            font-size: 26px;
+            font-weight: 700;
+
+            &_small {
+                font-size: 16px;
+            }
+        }
+    }
+
+    &_table {
+        padding: 5px;
+        background-color: $bg_gray;
+        border: 1px solid $bg_gray_border;
+
+        caption {
+            text-align: center;
+        }
+
+        &_element {
+            border-spacing: 0px;
+        }
+
+        caption {
+            font-size: 12px;
+            color: $white;
+            padding-bottom: 5px;
+
+        }
+
+        td {
+            padding: 2px;
+            border-bottom: 1px solid $bg_gray_border;
+        }
+
+        &_num {
+            color: $red;
+        }
+
+        &_reg {
+            color: $white;
+        }
+    }
+
+}
+
+.dead {
+    text-align: center;
+    padding: 5px;
+    padding-top: 20px;
+    background-color: $bg_gray;
+    border: 1px solid $bg_gray_border;
+    color: $white;
+    text-align: center;
+    margin-left: 5px;
+
+    &_total {
+        &_main {
+            color: $white;
+            font-size: 12px;
+        }
+
+        &_number {
+            color: $red;
+            font-size: 26px;
+            font-weight: 700;
+
+            &_recovered {
+                color: $green;
+                font-size: 26px;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+svg {
+    background-color: $bg_gray;
+    fill: $white;
+    stroke: $bg_gray_border;
+
+    .Cherkasy {}
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+
+    div:nth-child(1) {
+        flex: 1;
+    }
+
+    div:nth-child(2) {
+        flex: 4;
+    }
+
+    div:nth-child(3) {
+        flex: 1;
+    }
+}

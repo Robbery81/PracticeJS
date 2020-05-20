@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function work(a, b) {
+            console.log((a + b)); // произвольная функция или метод
+        }
+
+        function spy(f) {
+            return function wrapper(a, b) {
+                let result = f(a, b);
+                if (work.calls == undefined) {
+                    work.calls = [];
+                }
+                wrapper.calls.push([a, b]);
+
+                return result;
+            }
+        }
+
+        /*function spy(f) {
+
+            function wrapper(...args) {
+                wrapper.calls.push(args);
+                return f.apply(this, arguments);
+            }
+            wrapper.calls = [];
+            return wrapper;
+        }*/
+
+        work = spy(work);
+
+        work(1, 2); // 3
+        work(4, 5); // 9
+        console.log(work.calls);
+        for (let args of work.calls) {
+            alert('call:' + args.join()); // "call:1,2", "call:4,5"
+        }
+    </script>
+
+</body>
+
+</html>

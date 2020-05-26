@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://learn.javascript.ru/task/find-elements/table.html -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+  <form name="search">
+    <label>Search the site:
+      <input type="text" name="search">
+    </label>
+    <input type="submit" value="Search!">
+  </form>
+
+  <hr>
+
+  <form name="search-person">
+    Search the visitors:
+    <table id="age-table">
+      <tbody>
+        <tr>
+          <td>Age:</td>
+          <td id="age-list">
+            <label>
+              <input type="radio" name="age" value="young">less than 18</label>
+            <label>
+              <input type="radio" name="age" value="mature">18-50</label>
+            <label>
+              <input type="radio" name="age" value="senior">more than 50</label>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Additionally:</td>
+          <td>
+            <input type="text" name="info[0]">
+            <input type="text" name="info[1]">
+            <input type="text" name="info[2]">
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <input type="submit" value="Search!">
+  </form>
+
+  <script>
+    let ageTable = document.getElementById("age-table");
+    let label = ageTable.getElementsByTagName("label");
+    let label2 = ageTable.querySelectorAll("label");
+    let td = ageTable.querySelector("td");
+    let form = document.getElementsByName("search")[0];
+    let firstChild = form.querySelector("input");
+    let lastChild = form.lastElementChild;
+    let form2 = document.querySelector('form[name="search"]')
+    console.log(lastChild);
+    console.log(ageTable);
+    console.log(label);
+    console.log(label2);
+    console.log(td);
+  </script>
+</body>
+
+</html>

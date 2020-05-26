@@ -10,14 +10,12 @@
 <body>
     <script>
         Function.prototype.defer = function (t) {
-            return function () {
-                setTimeout(this, t);
-            }
+            return setTimeout(this, t);
         };
-
-        function f(a, b) {
+        фыафыа
+        /* function f(a, b) {
             alert(a + b);
-        }
+        } */
 
         f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
     </script>

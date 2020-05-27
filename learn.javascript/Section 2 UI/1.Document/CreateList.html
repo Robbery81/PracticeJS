@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <script>
+        let body = document.getElementById("body");
+        let ul = document.createElement("ul");
+        body.append(ul);
+
+        function createList() {
+
+            let listItem = prompt("List item", "content");
+
+            if (listItem == null || listItem == "") {
+                return;
+            }
+
+            let li = document.createElement("li");
+            li.textContent = listItem;
+            ul.append(li);
+            createList();
+        }
+        createList();
+    </script>
+</body>
+
+</html>

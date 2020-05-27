@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+</head>
+
+<body>
+    <ol id="elem">
+        <li>Привет</li>
+        <li>Мир</li>
+    </ol>
+
+    <script>
+        let elem = document.getElementById("elem");
+
+        function clear(elem) {
+            elem2 = elem.cloneNode(false);
+            elem.replaceWith(elem2);
+        }
+
+        /* function clear(elem) {
+            elem.innerHTML = '';
+        } */
+
+        clear(elem); // очищает список
+    </script>
+</body>
+
+</html>

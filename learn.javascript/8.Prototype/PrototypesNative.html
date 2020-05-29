@@ -9,15 +9,50 @@
 
 <body>
     <script>
-        Function.prototype.defer = function (t) {
-            return setTimeout(this, t);
-        };
-        фыафыа
-        /* function f(a, b) {
-            alert(a + b);
-        } */
+        let ford = Object.create({
+            calculateDistancePerYear: function () {
+                Object.defineProperty(this, 'distancePerYear', {
+                    value: Math.ceil(this.distance / this.age),
+                    enumerable: true,
+                    writable: false,
+                    configurable: false
+                })
+            }
+        }, {
+            name: {
+                value: 'Ford',
+                enumerable: true, //default 'iterble from for in'
+                writable: false, //default 'NO can change value'
+                configurable: false //default 'NO can delete value'
+            },
+            model: {
+                value: 'Focus',
+                enumerable: false, //custom 'NO iterble from for in'
+                writable: true, //custom 'can change value
+                configurable: true //custom 'NO can delete value'
+            },
+            year: {
+                value: 2015,
+                enumerable: true,
+                writable: false,
+                configurable: false
 
-        f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+            },
+            distance: {
+                value: 240000,
+                enumerable: true,
+                writable: false,
+                configurable: false
+            },
+            age: {
+                get: function () { //call when call age property
+                    return new Date().getFullYear() - this.year;
+                },
+                set: function () { //call when set age property
+                    console.log('call when set age property');
+                }
+            }
+        });
     </script>
 
 </body>

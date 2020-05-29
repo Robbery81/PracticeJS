@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Array.prototype.doublerMethod = function () {
+            let arr = [];
+            for (let i = 0; i < this.length; i++) {
+
+                if (typeof (this[i]) == "string") {
+                    arr[i] = this[i] + this[i];
+                } else if (typeof (this[i]) == "number") {
+                    arr[i] = this[i] ** 2;
+                }
+            }
+            return arr;
+        }
+
+        let arr = [5, "hello", 6];
+        console.log(arr.doublerMethod());
+    </script>
+
+</body>
+
+</html>

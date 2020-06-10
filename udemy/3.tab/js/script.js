@@ -134,12 +134,13 @@ document.addEventListener("DOMContentLoaded", function () {
     //Menu
 
     class MenuItem {
-        constructor(imgUrl, alt, subtitle, descr, total, parentSelector) {
+        constructor(imgUrl, alt, subtitle, descr, total, parentSelector, ...classes) {
             this.imgUrl = imgUrl;
             this.alt = alt;
             this.subtitle = subtitle;
             this.descr = descr;
             this.total = total;
+            this.classes = classes;
             this.parent = document.querySelector(parentSelector);
             this.transfer = 27;
             this.changeToUAH();
@@ -152,8 +153,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         render() {
             let element = document.createElement('div');
+
+            if (this.classes.length === 0) {
+                this.classes.push("menu__item");
+            }
+
+            this.classes.forEach(className => element.classList.add(className));
             element.innerHTML = `
-            <div class="menu__item">
             <img src=${this.imgUrl} alt=${this.alt}>
             <h3 class="menu__item-subtitle">${this.subtitle}</h3>
             <div class="menu__item-descr">${this.descr}</div>
@@ -161,10 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="menu__item-price">
                 <div class="menu__item-cost">Цена:</div>
                 <div class="menu__item-total"><span>${this.total}</span> грн/день</div>
-            </div>
             </div>`;
-            console.log(this.parent);
-            console.log(element);
             this.parent.append(element);
         }
 
@@ -180,7 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "Меню “Фитнес” - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!"
         ],
         total: [430, 550, 229],
-        parentSelector: ['.menu .container']
+        parentSelector: ['.menu .container'],
+        classes: ['menu__item'],
     };
 
     function createMenuItem(content) {
@@ -193,8 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 content.sub[i],
                 content.descr[i],
                 content.total[i],
-                content.parentSelector[0]).render();
+                content.parentSelector[0],
+                content.classes).render();
         }
     }
     createMenuItem(menuItemContent);
+
 });

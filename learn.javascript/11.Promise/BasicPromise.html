@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let c = 7;
+        let promise = new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                c = 99;
+                resolve(c);
+            }, 1000);
+        });
+        promise.then(() => {
+            console.log(c);
+        });
+
+        let promise2 = new Promise(resolve => {
+            setTimeout(() => {
+                c++;
+                resolve(c); //resolve(c++);
+            }, 2000);
+        });
+        promise2.then(() => {
+            console.log(c);
+        });
+
+        Promise.all([promise, promise2]).then(data => {
+            console.log(data);
+            console.log("twice promise work");
+        });
+
+        Promise.race([promise, promise2]).then(data => {
+            console.log(data);
+            console.log("one of array of promiseend  work");
+        });
+
+        // Promise chain
+        new Promise(function (resolve, reject) {
+            setTimeout(() => resolve(1), 1000);
+        }).then(function (result) {
+            alert(result); // 1
+            return result * 2;
+        }).then(function (result) {
+            alert(result); // 2
+            return result * 2;
+        }).then(function (result) {
+            alert(result); // 4
+            return result * 2;
+        });
+        //or
+        new Promise(resolve => {
+                setTimeout(() => resolve(1), 1000);
+            })
+            .then(result => result * 2)
+            .then(result => result * 2)
+            .then(result => result * 2);
+    </script>
+</body>
+
+</html>

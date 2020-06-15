@@ -229,30 +229,34 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             form.insertAdjacentElement('afterend', statusMessage);
 
-            let r = new XMLHttpRequest();
+            /* let r = new XMLHttpRequest();
             r.open('POST', 'server.php');
-            r.setRequestHeader('Content-type', 'application/json');
+            r.setRequestHeader('Content-type', 'application/json'); 
+            r.send(json);*/
 
             let formData = new FormData(form);
             const obj = {};
             formData.forEach((value, key) => {
                 obj[key] = value;
             });
-            let json = JSON.stringify(obj);
 
-            r.send(json);
-
-            form.reset();
-
-            r.addEventListener('load', () => {
-                statusMessage.remove();
-                if (r.status === 200) {
+            fetch('server.php', {
+                    method: "POST",
+                    body: JSON.stringify(obj),
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
                     showMessage(message.succes);
-                    //statusMessage.remove();
-                } else {
+                    statusMessage.remove();
+                }).catch(() => {
                     showMessage(message.failure);
-                }
-            });
+                }).finally(() => {
+                    form.reset();
+                });
         });
     }
 
@@ -274,5 +278,4 @@ document.addEventListener("DOMContentLoaded", function () {
             oldModalContent.classList.remove('hide');
         }, 2000);
     }
-
 });

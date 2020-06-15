@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Первая страница">
+    <meta name="author" content="Ivan">
+    <title>Hello</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <ol type="a" start="1" class="resourses">
+            <li>Wood: <span class="wood">0</span></li>
+            <li>Rubber: <span class="rubber">0</span></li>
+            <li>Metal: <span class="metal">0</span></li>
+            <li>Plastic:<span class="plastic">0</span></li>
+            <li>Oil:<span class="oil">0</span></li>
+            <li>Concrete:<span class="concrete">0</span></li>
+            <li>$:<span class="money">0</span></li>
+        </ol>
+
+        <nav>
+            <ul class="menu">
+                <li><a href="#manual">Manual</a></li>
+                <li><a href="#control">Control</a></li>
+                <li><a href="#staff">Staff</a></li>
+                <li><a href="#possession">Possession</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#info">
+                        <div class="menu_info">i</div>
+                    </a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <hr>
+    <section class="manual" id="manual">
+        Manual
+        <div class="manual_wrapper">
+            <div class="mine_rubber_metal">
+                <button class="btn btn_enough work_btn">Work</button>
+                <h2>Mine</h2>
+                <button class="data btn btn_no_enough wood_btn">Wood</button>
+                <button class="btn btn_enough rubber_btn">Rubber</button>
+                <button class="btn btn_enough metal_btn">Metal</button>
+
+            </div>
+            <div class="craftRubber">
+                <h2>Craft Rubber</h2>
+                <button class="data btn elastic_btn  btn_no_enough">
+                    <span>Elastic:</span>
+                    <div class="resourse elastic_count">0</div><br>
+                    <span>Rubber need: 2</span>
+                </button>
+
+                <button class="data btn gasket_btn btn_no_enough">
+                    <span>Gasket:</span>
+                    <div class="resourse gasket_count">0</div><br>
+                    <span>Rubber need: 3</span>
+                </button>
+                <!-- 
+                <button class="btn btn_no_enough"><span>Sealant</span></button>
+                <button class="btn btn_no_enough"><span>Mat</span></button>
+                <button class="btn btn_no_enough"><span>Chamber</span></button>
+                <button class="btn btn_no_enough"><span>Tire</span></button>
+            </div>
+            <div class="craftMetal">
+                <h2>Creft Metal</h2>
+                <button class="btn btn_no_enough"><span>Whell</span></button>
+                <button class="btn btn_no_enough"><span>Cylinder</span></button>
+                <button class="btn btn_no_enough"><span>Gear</span></button>
+                <button class="btn btn_no_enough"><span>Door</span></button>
+                <button class="btn btn_no_enough"><span>Bumper</span></button>
+                <button class="btn btn_no_enough"><span>Frame</span></button>
+            </div> -->
+            </div>
+    </section>
+
+
+    <hr>
+    <section class="factory">
+        <details>
+            <summary>Control</summary>
+            <div class="factory_wrapper">
+                <div class="factory_wrapper_tab">
+                    <div class="btn btn_tab btn_tab_active">Equpment</div>
+                    <div class="btn btn_tab">Manufacturing</div>
+                    <div class="btn btn_tab">Assembly</div>
+                </div>
+                <div class="factory_equpment tabcontent factory_active">
+                    <div class="factory_equipment_content">
+                        <div class="factory_equipment_wrapper">
+                            <table class="factory_equipment_table">
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Cost</th>
+                                    <th>Have</th>
+                                </tr>
+                                <tr>
+                                    <td class="equipment_item">License</td>
+                                    <td class="equipment_cost">10</td>
+                                    <td class="equipment_have have_license">0</td>
+                                    <td class="btn btn_equipment license_btn btn_no_enough">Buy</td>
+                                </tr>
+                                <tr>
+                                    <td class="equipment_item">Hot pres</td>
+                                    <td class="equipment_cost">10</td>
+                                    <td class="equipment_have have_hotPres">0</td>
+                                    <td class="btn btn_equipment hotPres_btn btn_no_enough">Buy</td>
+                                </tr>
+                            </table>
+                            <!--  <div class="btn">Hot pres</div>
+                            <div class="btn">Stove</div>
+                            <div class="btn">Dryer</div>
+    
+                            <div class="btn">Tools</div>
+                            <div class="btn">Vice</div>
+                            <div class="btn">Milling machine</div>
+                            <div class="btn">Pres</div>
+                            <div class="btn">Lift</div> -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="factory_manufacturing tabcontent">
+                    <div class="factory_manufacturing_content">
+
+                    </div>
+                </div>
+                <div class="factory_assembly tabcontent">
+                    <div class="factory_assembly_content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Recusandae eaque architecto quisquam quidem incidunt illum, eius illo maiores nulla quae nemo
+                        sint
+                        neque laborum saepe omnis in perspiciatis atque aut!</div>
+                </div>
+            </div>
+        </details>
+
+    </section>
+    <hr>
+    <section id="staff">
+        <details>
+            <summary>Staff</summary>
+        </details>
+    </section>
+    <hr>
+    <section class="possession">
+        <details open>
+            <summary>Possession</summary>
+            <!-- <div class="possession_wrapper">
+            <div class="forrest">Forrest</div>
+            <div class="well">Well</div>
+            <div class="laboratory">Laboratory</div>
+            <div class="metal_digger">Metal Digger</div>
+            <div class="career">Career</div>
+            <div class="land">Land</div>
+        </div> -->
+            <table class="possession_table">
+                <tr>
+                    <th>Item</th>
+                    <th>Cost</th>
+                    <th>Have</th>
+                </tr>
+                <tr>
+                    <td class="possession_item">Some tree</td>
+                    <td class="possession_item_cost">1</td>
+                    <td class="possession_have have_sometree">0</td>
+                    <td class="data btn btn_possession sometree_btn btn_no_enough">Buy</td>
+                </tr>
+            </table>
+        </details>
+
+    </section>
+    <hr>
+    <section class="market hide" id="market">
+        <div class="market_elements">
+            <div class="market__item">
+                <div class="market__item_header">
+                    <select name="marketSelect" id="marketSelect">
+                    </select><br>
+                </div>
+
+                <div class="market__item_window">
+
+                    <span>Sell:</span>
+                    <input type="number" placeholder="0" step="1" min="0"
+                        class="market__item_header_counter sell_input">
+                </div>
+                <div class="market__item_frame">
+                    <div class="market__item_sell btn btn_market btn_plus">+10</div>
+                    <div class="market__item_sell btn btn_market btn_max">MAX</div>
+                    <div class="market__item_sell btn btn_market btn_minus">-10</div>
+                </div>
+                <div class="market__item_btn_wrapper">
+
+                    <div class="btn btn_sell"><span>Sell</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <section>
+            <strong>Info:</strong>
+            <p class="info" id="info">
+                Все начинается с того, что ты самделаешь все нажимаешь на
+                необходимые кнопки. <br>
+                Создаешь и продаешь метал и резину, покупаешь оборудование, землю,
+                создаешь первую бригаду.
+            </p>
+        </section>
+    </footer>
+</body>
+
+</html>

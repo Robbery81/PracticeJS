@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = ["str", "", null, undefined, 0, false, NaN, 3];
+        let arr2 = arr.filter(item => Boolean(item) ? true : false);
+        let arr3 = arr.filter(Boolean);
+    </script>
+</body>
+
+</html>

@@ -284,7 +284,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Slider
+    let slideCurent;
+    checkLocalStorege();
+
+    function checkLocalStorege() {
+        if (localStorage.getItem('slideCurent')) {
+            slideCurent = localStorage.getItem('slideCurent');
+        } else {
+            slideCurent = 1;
+            saveLocalStorage();
+        }
+    }
+
+    function saveLocalStorage() {
+        localStorage.setItem('slideCurent', slideCurent);
+    }
+
     let slides = document.querySelectorAll('.offer__slide'),
+        slider = document.querySelector('.offer__slider'),
         prev = document.querySelector('.offer__slider-prev'),
         next = document.querySelector('.offer__slider-next'),
         offerSlideTotalNode = document.querySelector('#total'),
@@ -292,13 +309,46 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesWrapper = document.querySelector('.offer__slider-wrapper'),
         slidesField = document.querySelector('.offer__slider-inner'),
         width = window.getComputedStyle(slidesWrapper).width;
+    // heigth = window.getComputedStyle(slides[0]).height;
 
-    let slideCurent = 1;
+    let dotWrapper = document.createElement('div');
+    dotWrapper.classList.add('carousel-indicators');
+    slider.style.position = 'relative';
+    slider.append(dotWrapper);
+
+    createDot(slides.length);
+    let dot = document.querySelectorAll('.dot');
+
+    function createDot(count) {
+        for (let i = 1; i <= count; i++) {
+            let dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.setAttribute('data-number', `${i}`);
+            dotWrapper.append(dot);
+            if (i == slideCurent) {
+                dot.style.backgroundColor = 'red';
+            }
+        }
+    }
+
+    let dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            whiteDots();
+            dot.style.backgroundColor = 'red';
+            showSlide(+dot.dataset.number);
+
+        });
+    });
+
     let slideOfset = 0;
-    slidesField.style.width = 100 * slides.length + '%'; //reserv for slides
+    slidesField.style.width = 100 * slides.length + '%'; //reserv width for slides
+    //slidesField.style.heigth = 100 * slides.length + '%'; //reserv width for slides
     slidesField.style.display = 'flex';
+    //slidesField.style.flexDirection = 'column'; for vertical carousel
     slidesField.style.transition = '0.5s all';
 
+    //slidesWrapper.style.height = heigth;
     slidesWrapper.style.overflow = 'hidden';
     slides.forEach(slide => slide.style.width = width);
 
@@ -319,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return i;
     }
 
-    next.addEventListener('click', (e) => {
+    function nextSlide() {
         if (slideOfset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
             slideOfset = 0;
         } else {
@@ -327,9 +377,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         slidesField.style.transform = `translateX(-${slideOfset}px)`;
         slideCurent = slideCounter(++slideCurent);
-    });
+        saveLocalStorage();
+        whiteDots();
+        dot[slideCurent - 1].style.backgroundColor = 'red';
+    }
 
-    prev.addEventListener('click', (e) => {
+    function prevSlide() {
         if (slideOfset == 0) {
             slideOfset = +width.slice(0, width.length - 2) * (slides.length - 1);
         } else {
@@ -337,7 +390,42 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         slidesField.style.transform = `translateX(-${slideOfset}px)`;
         slideCurent = slideCounter(--slideCurent);
+        saveLocalStorage();
+        whiteDots();
+        dot[slideCurent - 1].style.backgroundColor = 'red';
+    }
+
+    next.addEventListener('click', (e) => {
+        nextSlide();
     });
+
+    prev.addEventListener('click', (e) => {
+        prevSlide();
+    });
+
+    function whiteDots() {
+        dots.forEach(d => d.style.backgroundColor = 'white');
+    }
+
+    function showSlide(num = slideCurent) {
+        let delta = num - slideCurent;
+
+        if (delta) {
+            for (let i = 0; i < delta; i++) {
+                nextSlide();
+            }
+        }
+        if (delta < 0) {
+            for (let i = 0; i > delta; i--) {
+                prevSlide();
+            }
+        }
+        slideCurentCounterNode.textContent = checkNum(slideCurent);
+    }
+
+
+
+
 
     /* 
         showSlides(slideCurent);

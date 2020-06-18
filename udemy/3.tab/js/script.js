@@ -284,12 +284,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //Slider
-    let slideCurent;
-    checkLocalStorege();
+    let slideCurent = 1;
+    let slideOfset = 0;
+
 
     function checkLocalStorege() {
         if (localStorage.getItem('slideCurent')) {
-            slideCurent = localStorage.getItem('slideCurent');
+            slideCurent = +localStorage.getItem('slideCurent');
+            showSlide(slideCurent, "first");
         } else {
             slideCurent = 1;
             saveLocalStorage();
@@ -319,6 +321,10 @@ document.addEventListener("DOMContentLoaded", function () {
     createDot(slides.length);
     let dot = document.querySelectorAll('.dot');
 
+    let dots = document.querySelectorAll('.dot');
+
+    checkLocalStorege();
+
     function createDot(count) {
         for (let i = 1; i <= count; i++) {
             let dot = document.createElement('div');
@@ -331,7 +337,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    let dots = document.querySelectorAll('.dot');
     dots.forEach(dot => {
         dot.addEventListener('click', (e) => {
             whiteDots();
@@ -341,7 +346,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    let slideOfset = 0;
     slidesField.style.width = 100 * slides.length + '%'; //reserv width for slides
     //slidesField.style.heigth = 100 * slides.length + '%'; //reserv width for slides
     slidesField.style.display = 'flex';
@@ -359,6 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return num >= 10 ? num : `0${num}`;
     }
 
+    function delNoDigit(str) {
+        return +str.replace(/\D/g, '');
+    }
+
     function slideCounter(i) {
         if (i == 0) {
             i = slides.length;
@@ -370,10 +378,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function nextSlide() {
-        if (slideOfset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+        if (slideOfset == delNoDigit(width) * (slides.length - 1)) {
             slideOfset = 0;
         } else {
-            slideOfset += +width.slice(0, width.length - 2);
+            slideOfset += delNoDigit(width);
         }
         slidesField.style.transform = `translateX(-${slideOfset}px)`;
         slideCurent = slideCounter(++slideCurent);
@@ -384,9 +392,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function prevSlide() {
         if (slideOfset == 0) {
-            slideOfset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            slideOfset = delNoDigit(width) * (slides.length - 1);
         } else {
-            slideOfset -= +width.slice(0, width.length - 2);
+            slideOfset -= delNoDigit(width);
         }
         slidesField.style.transform = `translateX(-${slideOfset}px)`;
         slideCurent = slideCounter(--slideCurent);
@@ -407,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dots.forEach(d => d.style.backgroundColor = 'white');
     }
 
-    function showSlide(num = slideCurent) {
+    function showSlide(num = slideCurent, str = 'simple') {
         let delta = num - slideCurent;
 
         if (delta) {
@@ -421,6 +429,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         slideCurentCounterNode.textContent = checkNum(slideCurent);
+        if (str == "first") {
+            whiteDots();
+            dot[slideCurent - 1].style.backgroundColor = 'red';
+            for (let i = 1; i < slideCurent; i++) {
+                slideOfset += +width.replace(/\D/g, '');
+            }
+            slidesField.style.transform = `translateX(-${slideOfset}px)`;
+        }
     }
 
 
@@ -461,4 +477,107 @@ document.addEventListener("DOMContentLoaded", function () {
         next.addEventListener('click', (e) => {
             plusSlides(1);
         }); */
+
+    // Calc
+
+    let calcResult = document.querySelector('.calculating__result>span');
+
+
+    let sex,
+        ratio,
+        weight,
+        height,
+        age;
+
+    if (localStorage.getItem('sex')) {
+        sex = localStorage.getItem('sex');
+        let elementBlock = document.querySelectorAll(`#gender div`);
+        elementBlock.forEach(block => {
+            if (block.id == sex) {
+                block.classList.add('calculating__choose-item_active');
+            } else {
+                block.classList.remove('calculating__choose-item_active');
+            }
+        });
+    } else {
+        localStorage.setItem('sex', 'female');
+    }
+
+    if (localStorage.getItem('ratio')) {
+        ratio = localStorage.getItem('ratio');
+        let elementBlock = document.querySelectorAll('.calculating__choose_big div');
+        elementBlock.forEach(block => {
+            if ((block.getAttribute("data-ratio")) == ratio) {
+                block.classList.add('calculating__choose-item_active');
+            } else {
+                block.classList.remove('calculating__choose-item_active');
+            }
+        });
+    } else {
+        localStorage.setItem('ratio', 1.375);
+    }
+
+    function calculateCalories() {
+        if (!weight || !height || !age) {
+            calcResult.textContent = "___";
+            return;
+        }
+        if (sex === "female") {
+            calcResult.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
+        } else {
+            calcResult.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
+        }
+    }
+    calculateCalories();
+
+    function checkFieldBtn(parentSelector, activeClass) {
+        let elementBlock = document.querySelectorAll(`${parentSelector} div`);
+        elementBlock.forEach(block => {
+            block.addEventListener('click', (e) => {
+                elementBlock.forEach(block => block.classList.remove(activeClass));
+                e.target.classList.add(activeClass);
+                if (e.target.hasAttribute('data-ratio')) {
+                    ratio = +e.target.getAttribute('data-ratio');
+                    localStorage.setItem('ratio', ratio);
+                } else if (e.target.id == "male") {
+                    localStorage.setItem('sex', 'male');
+                    sex = "male";
+                } else {
+                    localStorage.setItem('sex', 'female');
+                    sex = "female";
+                }
+
+                calculateCalories();
+            });
+        });
+    }
+
+    function checkInput(input) {
+        let inputField = document.querySelector(input);
+        inputField.addEventListener('input', (e) => {
+            if (e.target.value.match(/\D/g)) {
+                e.target.style.border = "1px solid red";
+            } else {
+                e.target.style.border = "none";
+            }
+            switch (e.target.id) {
+                case 'height':
+                    height = +e.target.value;
+                    break;
+                case 'weight':
+                    weight = +e.target.value;
+                    break;
+                case 'age':
+                    age = +e.target.value;
+                    break;
+            }
+            calculateCalories();
+        });
+    }
+
+    checkFieldBtn('#gender', 'calculating__choose-item_active');
+    checkFieldBtn('.calculating__choose_big', 'calculating__choose-item_active');
+    checkInput('#height');
+    checkInput('#weight');
+    checkInput('#age');
 });

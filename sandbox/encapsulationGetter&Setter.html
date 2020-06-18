@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Car {
+            constructor(model, year) {
+                this._model = model;
+                this._year = year;
+            }
+            //standart
+            get model() {
+                return this._model;
+            }
+            set model(modelName) {
+                this._model = modelName;
+            }
+
+            //new syntaxis
+            #securityPassword = 2314;
+            get securityPassword() {
+                return this.#securityPassword;
+            }
+            set securityPassword(pin) {
+                return this.#securityPassword = pin;
+            }
+        }
+        let myCar = new Car("ford", 2017);
+        console.log(myCar.model = "VAZ");
+        console.log(myCar.securityPassword = 23456);
+        console.log(myCar);
+    </script>
+</body>
+
+</html>

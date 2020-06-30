@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        let likes = 50;
+        let maxTimeBetweenLike = 60000,
+            minTimeBetweenLike = 23000;
+        function like() {
+            let likeInterval = setInterval(() => {
+                let startTime = new Date;
+                
+                if (likes < 1000) {
+                    oneLike(startTime);
+                } else if (likes > 1000) {
+                    likes = 0;
+                    clearInterval(likeInterval);
+                    return;
+                }
+            }, maxTimeBetweenLike+1000);
+        }
+        
+        function oneLike(startTime) {
+            setTimeout(() => {
+                const heart = document.querySelector('svg[aria-label="Нравится"]').parentNode;
+                const arrow = document.querySelector('a.coreSpriteRightPaginationArrow');
+                let likeTime = new Date;
+                console.log('startTime', startTime);
+                console.log('likeTime', likeTime);
+                if (heart) {
+                    heart.click()
+                    likes++;
+                    console.log(`You've liked ${likes} post(s)`);
+                }
+                arrow.click();
+            }, randLikeTime(minTimeBetweenLike, maxTimeBetweenLike));
+        }
+
+        function randLikeTime(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        like();
+        //setInterval(like, 3600000);
+    </script>
+</body>
+
+</html>

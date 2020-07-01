@@ -10,21 +10,26 @@
 <body>
     <script>
         
-        let likes = 50;
-        let maxTimeBetweenLike = 60000,
-            minTimeBetweenLike = 23000;
-        function like() {
+        let followBtn = document.querySelectorAll('button.sqdOP');
+        let likes = 50,
+            follow = 1;
+        let maxTimeBetweenLike = 60000, //60000
+            minTimeBetweenLike = 23000, //23000
+            likeNeed = 1000,
+            followNeed = 5;
+
+        function massLike() {
             let likeInterval = setInterval(() => {
                 let startTime = new Date;
                 
-                if (likes < 1000) {
+                if (likes < likeNeed) {
                     oneLike(startTime);
-                } else if (likes > 1000) {
+                } else if (likes > likeNeed) {
                     likes = 0;
                     clearInterval(likeInterval);
                     return;
                 }
-            }, maxTimeBetweenLike+1000);
+            }, maxTimeBetweenLike);
         }
         
         function oneLike(startTime) {
@@ -43,10 +48,40 @@
             }, randLikeTime(minTimeBetweenLike, maxTimeBetweenLike));
         }
 
+        function massFollow() {
+            let followInterval = setInterval(() => {
+                let startTime = new Date;
+                if (follow <= followNeed) {
+                    console.log('startTime', startTime);
+                    oneFollow(startTime);
+                } else if (follow > followNeed) {
+                    follow = 0;
+                    clearInterval(followInterval);
+                    return;
+                }
+            }, maxTimeBetweenLike);
+        }
+
+        function oneFollow(startTime) {
+            setTimeout(() => {
+
+                if (followBtn[follow].textContent === 'Подписаться') {
+                    followBtn[follow].click();
+                    let followTime = new Date;
+                    console.log('followTime', followTime);
+                }
+
+                document.getElementsByClassName('isgrP')[0].scrollTop += 50;
+                follow++;
+               
+            }, randLikeTime(minTimeBetweenLike, maxTimeBetweenLike));
+        }
+
         function randLikeTime(min, max) {
             return Math.random() * (max - min) + min;
         }
-        like();
+        //massLike();
+        massFollow();
         //setInterval(like, 3600000);
     </script>
 </body>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+        <!-- добавим стили mocha для отображения результатов -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+        <!-- добавляем сам фреймворк mocha -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+        <script>
+          // включаем режим тестирования в стиле BDD
+          mocha.setup('bdd');
+        </script>
+        <!-- добавим chai -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+        <script>
+          // chai предоставляет большое количество функций. Объявим assert глобально
+          let assert = chai.assert;
+        </script>
+      </head>
+</head>
+
+<body>
+    <script>
+        let originalInputStr = "spd-university";
+        let inputStr = originalInputStr.toUpperCase();
+        let inputArr = inputStr.split("");
+        let uniqArr = new Set (inputArr);
+
+        function subtractNum(one, second) {
+            return one - second;
+        }
+
+        function printResult(num) {
+            num.toString().split("").forEach(item => console.log(item));
+        }
+
+        function findOddAndEven(arr){
+            let even = [],
+                odd = [];
+            arr.forEach(item => {
+                let code = item.charCodeAt(0);
+                if (code % 2 === 0) {
+                    even.push(code);
+                } else {
+                    odd.push(code);
+                }
+            });
+            return {
+                even,
+                odd
+            }
+        };
+
+        let groups = findOddAndEven(uniqArr);
+        let summEven = groups.even.reduce((summ, curent) => summ + curent);
+        let summOdd = groups.odd.reduce((summ, curent) => summ + curent);
+
+        let result = subtractNum(summEven,summOdd);
+        
+        console.log("Посимвольний вивід результату функцією:")
+        printResult(result);
+
+        //console
+        console.log("originalInput:", originalInputStr);
+        console.log("inputUperCase: ", inputStr);
+        console.log("uniqChars", uniqArr);
+        console.log("even & odd", groups);
+        console.log("summEven", summEven);
+        console.log("summOdd", summOdd);
+        console.log("result", result);
+    </script>
+      <!-- скрипт со спецификацией (describe, it...) -->
+  <script>
+      describe("subtractNum", function() {
+
+        it("різниця між сумою унікальних символів = 34", function() {
+        assert.equal(subtractNum(478 , 444), 34);
+        });
+
+        });
+  </script>
+
+  <!-- элемент с id="mocha" будет содержать результаты тестов -->
+  <div id="mocha"></div>
+
+  <!-- запускаем тесты! -->
+  <script>
+    mocha.run();
+  </script>
+</body>
+
+</html>

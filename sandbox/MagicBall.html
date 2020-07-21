@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ball {
+            position: relative;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+            border-radius: 100%;
+            background-color: black;
+        }
+
+        .wrapper {
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            border-radius: 100%;
+            background-color: grey;
+            width: 200px;
+            height: 200px;
+        }
+
+        .triangle {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items:unset;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 138.6px 80px 0 80px;
+            border-color: #007bff transparent transparent transparent;
+        }
+
+        .text {
+            margin-top: -110px;
+            color: white;
+            text-align: center;
+        }
+
+        .blick {
+            position: absolute;
+            top: 15px;
+            right: 80px;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-color: lightslategrey;
+            filter: blur(10px);
+            border-radius: 100%;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball">
+        <div class="blick"></div>
+        <div class="wrapper">
+            <div class="animate__animated triangle">
+                <div class="text">Потруси</div>
+            </div>
+        </div>
+    </div>
+    <form action="">
+        <p><b>Режим:</b><Br>
+            <input type="radio" name="browser" data-value="magic" checked>Предсказание<Br>
+            <input type="radio" name="browser" data-value="alco">Алко<Br>
+           </p>
+    </form>
+    <script>
+        let ball = document.querySelector('.ball'),
+            text = document.querySelector('.text'),
+            inputs = document.querySelectorAll('input'),
+            triangle = document.querySelector('.triangle');
+            
+        
+        const magic = [
+            'Бесспорно',
+            'Предрешено',
+            'Никаких сомнений',
+            'Определённо да',
+            'Можешь быть уверен в этом',
+            'Да',
+            'Вероятнее всего',
+            'Хорошие перспективы',
+            'Пока не ясно, попробуй снова',
+            'Спроси позже',
+            'Лучше не рассказывать',
+            'Сейчас нельзя предсказать',
+            'Сконцентрируйся и спроси опять',
+            'Даже не думай',
+            'Мой ответ «нет»',
+            'По моим данным — «нет»',
+            'Перспективы не очень хорошие',
+            'Весьма сомнительно'
+        ];
+
+        const alco = [
+            'Наполнить до краев',
+            'До дна',
+            'Половинку',
+            'Не пить',
+            'Долить справа',
+            'Долить слева',
+            'Всем допить',
+        ];
+
+        ball.onmousedown = function(event) {
+            let mode;
+            inputs.forEach(input => {
+                    if (input.checked) {
+                        mode = eval(input.dataset.value);
+                    }
+            });
+            
+            ball.style.position = 'absolute';
+            ball.style.zIndex = 1;
+            document.body.append(ball);
+
+
+            let startX = event.pageX;
+            let startY = event.pageY;
+
+            moveAt(event.pageX, event.pageY);
+
+            // передвинуть мяч под координаты курсора
+            // и сдвинуть на половину ширины/высоты для центрирования
+            function moveAt(pageX, pageY) {
+                ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+                ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+            }
+
+            function onMouseMove(event) {
+                checkShake(event.pageX, event.pageY);
+                moveAt(event.pageX, event.pageY);
+            }
+
+            // (3) перемещать по экрану
+            document.addEventListener('mousemove', onMouseMove);
+
+            // (4) положить мяч, удалить более ненужные обработчики событий
+            ball.onmouseup = function() {
+                document.removeEventListener('mousemove', onMouseMove);
+                ball.onmouseup = null;
+                setTimeout(() => {
+                    triangle.classList.remove('animate__swing');
+                }, 1000);
+            };
+
+            function showVariant(mode) {
+                triangle.classList.add('animate__swing');
+                text.innerHTML = `${mode[randomInteger(0, mode.length-1)]}`;
+                
+            }
+
+            function checkShake(curentX, curentY) {
+                if (Math.abs(startX - curentX) > 50 || 
+                    Math.abs(startY - curentY) > 50) {
+                    showVariant(mode);
+                }
+            }
+
+            function randomInteger(min, max) {
+                // получить случайное число от (min-0.5) до (max+0.5)
+                let rand = min - 0.5 + Math.random() * (max - min + 1);
+                let result = Math.round(rand);
+                return result;
+            }
+        };
+    </script>
+</body>
+</html>

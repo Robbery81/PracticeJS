@@ -11,11 +11,11 @@
     <script>
         
         let followBtn = document.querySelectorAll('button.sqdOP');
-        let likes = 50,
+        let likes = 0,
             follow = 1;
         let maxTimeBetweenLike = 60000, //60000
             minTimeBetweenLike = 23000, //23000
-            likeNeed = 1000,
+            likeNeed = 200,
             followNeed = 5;
 
         function massLike() {
@@ -34,7 +34,8 @@
         
         function oneLike(startTime) {
             setTimeout(() => {
-                const heart = document.querySelector('svg[aria-label="Нравится"]').parentNode;
+                const heart = document.querySelector('svg[aria-label="Нравится"]').parentElement;
+                //console.log(heart);
                 const arrow = document.querySelector('a.coreSpriteRightPaginationArrow');
                 let likeTime = new Date;
                 console.log('startTime', startTime);
@@ -80,8 +81,8 @@
         function randLikeTime(min, max) {
             return Math.random() * (max - min) + min;
         }
-        //massLike();
-        massFollow();
+        massLike();
+        //massFollow();
         //setInterval(like, 3600000);
     </script>
 </body>

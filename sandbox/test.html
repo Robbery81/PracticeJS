@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Play battleship!</h1>
+    <script>
+        function one() {
+            setTimeout(() => {
+                console.log('1');
+            }, 0);
+
+            Promise.resolve('2').then(console.log);
+
+            console.log("3");
+        }
+
+        /* Promise.reject('a')
+            .catch(p => p+'b')
+            .catch(p => p+'c')
+            .then(p => p+'d')
+            .finally(p => p +'e')
+            .then(p => console.log(p)) */
+
+        function logPerson() {
+            console.log(`${this.name}, ${this.age}, ${this.job}`);
+        }
+
+        const person1 = {
+            name: "Stiv",
+            age: 20,
+            job: "back"
+        };
+        const person2 = {
+            name: "Bill",
+            age: 30,
+            job: "front"
+        };
+
+        function bind(context, fn) {
+            return function (...args) {
+                fn.apply(context, args);
+            };
+        }
+
+        bind(person1, logPerson);
+        bind(person2, logPerson);
+
+
+        function makeRandomFn(...arr) {
+            arr = arr.flat();
+            return () => {
+                let randIndex = Math.floor(Math.random() * arr.length);
+                return arr[randIndex];
+            };
+        }
+        const getRandomNumber = makeRandomFn([1, 2, 100, 34, 45, 556, 33]);
+        const getRandomNumber2 = makeRandomFn(1, 2, 100, 34, 45, 556, 33);
+        console.log(getRandomNumber()) // 100
+        console.log(getRandomNumber2()) // 100
+    </script>
+</body>
+
+</html>

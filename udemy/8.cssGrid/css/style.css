@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  
+  width: 1920px;
+  height: 750px;
+}
+
+.grid-container {
+  width: 1140px;
+  margin: 82px auto 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 240px);
+  grid-template-rows: repeat(2, minmax(260px, auto));
+  grid-auto-rows: 260px;
+  gap: 60px;
+}
+
+.grid-elem {
+}
+
+.grid-elem img {
+  margin-bottom: 15px;
+  width: 100%;
+}

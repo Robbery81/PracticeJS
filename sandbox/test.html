@@ -2,68 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .bordered {
+      border: 1px solid black;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Play battleship!</h1>
-    <script>
-        function one() {
-            setTimeout(() => {
-                console.log('1');
-            }, 0);
+  <h1>Play battleship!</h1>
 
-            Promise.resolve('2').then(console.log);
+  <script>
+  function isPalindrom(number) {
+    number = number.split("");
+    for (let i = 0; i < Math.floor(number.length / 2); i++) {
 
-            console.log("3");
-        }
+      if (number[i] === number[number.length - 1 - i]) {
+        return true;
+      }
 
-        /* Promise.reject('a')
-            .catch(p => p+'b')
-            .catch(p => p+'c')
-            .then(p => p+'d')
-            .finally(p => p +'e')
-            .then(p => console.log(p)) */
+      return false;
+    }
+  }
 
-        function logPerson() {
-            console.log(`${this.name}, ${this.age}, ${this.job}`);
-        }
+    /* Promise.reject('a')
+        .catch(p => p+'b')
+        .catch(p => p+'c')
+        .then(p => p+'d')
+        .finally(p => p +'e')
+        .then(p => console.log(p)) */
+    /* 
+            class User {
+                constructor(groupPeople) {
+                    this.groupPeople = groupPeople
+                }
 
-        const person1 = {
-            name: "Stiv",
-            age: 20,
-            job: "back"
-        };
-        const person2 = {
-            name: "Bill",
-            age: 30,
-            job: "front"
-        };
+                checkRoot() {
+                    function getStudentNumber(id) {
+                        if (this.groupPeople[id]) {
+                            promise4.then((groupArr) => {
+                                if (this.groupPeople[id] > groupArr.length) {
+                                    return Promise.reject(
+                                            "number of people in the groupPeople more than indicated")
+                                        .then(
+                                            new Error());
+                                }
+                                this.studentList = groupArr;
+                                this.studentCount = groupPeople[id];
+                            });
 
-        function bind(context, fn) {
-            return function (...args) {
-                fn.apply(context, args);
+                            return Promise.resolve(groupPeople[id]);
+                        }
+
+                        return Promise.reject("Have not user ID").then(new Error());
+
+                    }
+                    const promise1 = new Promise((resolve) => {
+                        setTimeout(() => Promise.resolve('Cherkasy')
+                            .then((value) => resolve(value)), 1000);
+                    });
+
+                    const promise2 = new Promise((resolve, reject) => {
+                        setTimeout(() => Promise.resolve('admin')
+                            .then((role) => resolve(role)), 4000);
+                    });
+
+                    const promise3 = new Promise((resolve) => {
+                        setTimeout(() => Promise.resolve('1')
+                            .then((id) => resolve(id)), 2000);
+                    });
+
+                    const promise4 = new Promise((resolve) => {
+                        setTimeout(() => Promise.resolve(['Саша', 'Влад', 'Юля', 'Андрей', 'Богдан'])
+                            .then((groupArr) => resolve(groupArr)), 1000);
+                    });
+
+                    promise1.then((location) => {
+                        this.location = location;
+                        console.log(this);
+                        return promise3;
+                    }).then((id) => {
+                        this.id = +id;
+                        console.log(this);
+                        return promise2;
+                    }).then((role) => {
+                        this.role = role;
+                        this.email = `${this.location}${this.id}.${role}.com`;
+                        if (role === 'admin') {
+                            console.log(this);
+                            return getStudentNumber.call(this, this.id);
+                        }
+                    }).catch(() => {
+                        throw new Error('Not enough rights');
+                    });
+                }
             };
-        }
 
-        bind(person1, logPerson);
-        bind(person2, logPerson);
-
-
-        function makeRandomFn(...arr) {
-            arr = arr.flat();
-            return () => {
-                let randIndex = Math.floor(Math.random() * arr.length);
-                return arr[randIndex];
-            };
-        }
-        const getRandomNumber = makeRandomFn([1, 2, 100, 34, 45, 556, 33]);
-        const getRandomNumber2 = makeRandomFn(1, 2, 100, 34, 45, 556, 33);
-        console.log(getRandomNumber()) // 100
-        console.log(getRandomNumber2()) // 100
-    </script>
+            const groupPeople = {
+                1: 8,
+                2: 5,
+                3: 7,
+                4: 4,
+                5: 6,
+            }
+            let a = new User(groupPeople).checkRoot();
+            console.log(a); */
+  </script>
 </body>
 
 </html>

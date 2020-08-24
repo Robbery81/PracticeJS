@@ -96,15 +96,15 @@ let game = {
   },
 
   update() {
-    this.ball.сollideWorldBounds();
-    this.platform.сollideWorldBounds();
+    this.platform.collideWorldBounds();
+    this.ball.collideWorldBounds();
     this.platform.move();
     this.ball.move();
-    this.сollideBlock();
-    this.сollidePlatform();
+    this.collideBlock();
+    this.collidePlatform();
   },
 
-  сollideBlock() {
+  collideBlock() {
     for (let block of this.blocks) {
       if (this.ball.collide(block) && block.active) {
         this.ball.bumbBlock(block);
@@ -114,7 +114,7 @@ let game = {
     }
   },
 
-  сollidePlatform() {
+  collidePlatform() {
     if (this.ball.collide(this.platform)) {
       this.ball.bumbPlatform(this.platform);
       this.sounds.bump.play();
@@ -236,7 +236,7 @@ game.ball = {
       this.dx = this.velocity * platform.getTouchOfset(touchX);
     }
   },
-  сollideWorldBounds() {
+  collideWorldBounds() {
     let x = this.x + this.dx;
     let y = this.y + this.dy;
 
@@ -269,8 +269,8 @@ game.ball = {
 };
 
 game.platform = {
-  velocity: 6, //максимальная скорость
-  dx: 0, //смещение по оси х в даный момент
+  velocity: 6, //макcимальная cкороcть
+  dx: 0, //cмещение по оcи х в даный момент
   x: 280,
   y: 300,
   width: 100,
@@ -308,7 +308,7 @@ game.platform = {
     let result = offset * 2 / this.width; //result = [0,2]
     return result - 1; //return = [-1,1]
   },
-  сollideWorldBounds() {
+  collideWorldBounds() {
     let x = this.x + this.dx;
 
     let platformLeft = x;

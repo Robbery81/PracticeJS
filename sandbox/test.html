@@ -6,33 +6,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    img {
-      width: 200px;
-      height: 200px;
+    .circle {
+      position: relative;
+      width: 512px;
+      height: 512px;
+      border-radius: 100%;
+      background-color: #54C0EB;
+
     }
 
-    .bordered {
-      border: 1px solid black;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    .platform {
+      position: relative;
+      top: 350px;
+      left: 130px;
+      width: 240px;
+      height: 45px;
+      background-color: #324A5E;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
     }
+
+    .cirena {
+      position: relative;
+      top: 105px;
+      left: 150px;
+      width: 200px;
+      height: 200px;
+      background-color: #FF7058;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+
+    .blick {
+      position: fixed;
+      top: 200px;
+      left: 180px;
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      
+      border-radius: 15px 100px 15px 100px;
+    }
+
   </style>
 </head>
 
 <body>
-  <h1>Play battleship!</h1>
+  <div class="circle">
+    <div class="platform"></div>
+    <div class="cirena"></div>
+    <div class="blick"></div>
+  </div>
 
   <script>
-  function isPalindrom(number) {
-    number = number.split("");
-    for (let i = 0; i < Math.floor(number.length / 2); i++) {
-
-      if (number[i] === number[number.length - 1 - i]) {
-        return true;
-      }
-
-      return false;
-    }
+    /* function every_nth(arr, numElement) {
+	const newArr = [];
+	for(let i = numElement - 1; i <= arr.length - 1; i += numElement) {
+  	newArr.push(arr[i]);
   }
+  return newArr;
+}
+
+console.log(every_nth([1, 2, 3, 4, 5, 6], 1));
+console.log(every_nth([1, 2, 3, 4, 5, 6], 2)); 
+console.log(every_nth([1, 2, 3, 4, 5, 6], 3)); 
+console.log(every_nth([1, 2, 3, 4, 5, 6], 4));
+
+ */
+
+    /* function isPalindrom(number) {
+      number = number.split("");
+      for (let i = 0; i < Math.floor(number.length / 2); i++) {
+
+        if (number[i] === number[number.length - 1 - i]) {
+          return true;
+        }
+
+        return false;
+      }
+    } */
 
     /* Promise.reject('a')
         .catch(p => p+'b')

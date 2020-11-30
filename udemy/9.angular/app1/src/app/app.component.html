@@ -1,0 +1,18 @@
+<h1 class="test">Hello world</h1>
+
+<input #myInput type="text" (keyup.enter)="onInput($event)" (blur)="onBlur(myInput.value)">
+<p><strong>{{inputValue}}</strong></p>
+
+<input #input2 type="text" [value]="title" (input)="onInput($event)">
+<p><strong>{{input2.value}}</strong></p>
+
+<p>{{title}}</p>
+<strong>{{number}}</strong>
+<img src="{{img}}" alt="">
+<img [src]="img" alt="">
+<a [href]="link">LINK</a>
+
+
+<app-button></app-button>
+<app-post></app-post>
+<app-post-custom></app-post-custom>

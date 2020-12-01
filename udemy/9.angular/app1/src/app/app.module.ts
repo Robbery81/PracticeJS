@@ -1,19 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {PostComponent} from './post/post.component';
-import {CustomComponent} from './custom/custom.component';
-import {ButtonComponent} from './button/button.component';
-import {FormsModule} from '@angular/forms';
+import { PostFormComponent } from './post-form/post-form.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
-    CustomComponent,
-    ButtonComponent,
+    PostFormComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

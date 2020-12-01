@@ -1,24 +1,21 @@
-<h1 class="test">Hello world</h1>
+<div class="container">
+  <h1>Angular Components</h1>
 
-<input #myInput type="text" (keyup.enter)="onInput($event)" (blur)="onBlur(myInput.value)">
-<p><strong>{{inputValue}}</strong></p>
+  <app-post-form
+    (onAdd)="updatePosts($event)"
+  ></app-post-form>
+  <hr />
+  <app-post
+    *ngFor="let p of posts"
+    [post]="p"
+  >
+    <div #info>
+      <small *ngIf="p.text.length > 10; else short">Пост длинный</small>
+      <ng-template #short>
+        <small>Пост короткий</small>
+      </ng-template>
+    </div>
+  </app-post>
+</div>
 
-<input #input2 type="text" [value]="title" (input)="onInput($event)">
-<p><strong>{{input2.value}}</strong></p>
 
-<p>{{title}}</p>
-<strong>{{number}}</strong>
-<img src="{{img}}" alt="">
-<img [src]="img" alt="">
-<a [href]="link">LINK</a>
-
-<ul>
-  <li *ngFor="let num of arr">
-    {{num}}
-  </li>
-</ul>
-
-
-<app-button></app-button>
-<app-post></app-post>
-<app-post-custom></app-post-custom>

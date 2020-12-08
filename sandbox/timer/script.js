@@ -46,21 +46,21 @@ function timer() {
             case "17": text.innerText = 'Не трогай руками бо посадять, хотя...'; break;
             case "16": text.innerText = 'То значить шо 2 в степені 4'; break;
             case "15": text.innerText = 'Три рази по пять і вона в тебе в руках'; break;
-            case "14": text.innerText = 'Два тидні і ти гамаєш на плоєчкі'; break;
+            case "14": text.innerText = 'Два тижні і ти гамаєш на плоєчкі'; break;
             case "13": text.innerText = "Чортова дюжина хоче з тобой випить!"; break;
-            case "12": text.innerText = "І тринадцятий Іван"; break;
+            case "12": text.innerText = "Апостолів і тринадцятий Іван"; break;
             case "11": text.innerText = "Диви, заборчик :р"; break;
-            case "10": text.innerText = "А в двійковій системі це скільки?"; break;
+            case "10": text.innerText = "А в двійковій системі це скільки? Липка с*ка так і не прочитав!"; break;
             case "09": text.innerText = 'І от ти на фінішній прямій!'; break;
-            case "08": text.innerText = '2 в якій степені? Правильно!'; break;
-            case "07": text.innerText = 'Лише неділька осталась!'; break;
-            case "06": text.innerText = 'Погана цифра, ждем нову'; break;
-            case "05": text.innerText = 'Один робочий тиждень і ти в шляпі!'; break;
-            case "04": text.innerText = 'то шо там по степенях двойки?'; break;
-            case "03": text.innerText = 'Як я ти і пиво'; break;
-            case "02": text.innerText = 'Ну от і настав це день, день 2'; break;
-            case "01": text.innerText = 'Ну я хз може вона в тебе вже в руках, якшо ні, то скоро буде!'; break;
-            case "0": text.innerText = 'Іван, БІЖИ НА ПОШТУ!'; break;
+            case "08": text.innerText = 'Тут було шось про степень двойки, але ну нафіг!'; break;
+            case "07": text.innerText = 'Тиждень. Лише неділька осталась!'; break;
+            case "06": text.innerText = 'Шестьорка, погана цифра, ждем нову'; break;
+            case "05": text.innerText = 'Робочу недільку відпахать і ти в шляпі(і з усами)!'; break;
+            case "04": text.innerText = 'Як пальців у хорошого слесаря'; break;
+            case "03": text.innerText = 'Я ти і пиво'; break;
+            case "02": text.innerText = 'Ну от і настав це день, трошки даже інтімний'; break;
+            case "01": text.innerText = 'Відчуй її в себе в руках!'; break;
+            case "0": text.innerText = 'АЛЯЯЯРМ! Іван, БІЖИ НА ПОШТУ!'; break;
             default: text.innerText = 'Привіт';
           }
   
